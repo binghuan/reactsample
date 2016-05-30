@@ -23,6 +23,8 @@ var MarkdownEditor = React.createClass({
     },
     render: function() {
 
+        var imgSrc = location.origin + location.pathname + "/images/sampleOfMarkdownEditor.png";
+
         var imgStyle = {
             margin: "10px 0 0 0"
         };
@@ -39,7 +41,7 @@ var MarkdownEditor = React.createClass({
             dangerouslySetInnerHTML = {
                 this.rawMarkup()
             }
-            /> <br/>< img src = "../images/sampleOfMarkdownEditor.png"
+            /> <br/>< img src = {imgSrc}
             style = {
                 imgStyle
             }

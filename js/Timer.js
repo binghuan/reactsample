@@ -21,13 +21,15 @@ var Timer = React.createClass({
     },
     render: function() {
 
+        var imgSrc = location.origin + location.pathname + "/images/sampleOfTimer.png";
+
         var imgStyle = {
             margin: "10px 0 0 0"
         };
 
         return ( < div > Seconds Elapsed: {
             this.state.secondsElapsed
-        }<br/>< img src = "../images/sampleOfTimer.png"
+        }<br/>< img src = {imgSrc}
         style = {
             imgStyle
         }

@@ -38879,6 +38879,8 @@
 	    },
 	    render: function render() {
 
+	        var imgSrc = location.origin + location.pathname + "/images/sampleOfTimer.png";
+
 	        var imgStyle = {
 	            margin: "10px 0 0 0"
 	        };
@@ -38889,7 +38891,7 @@
 	            ' Seconds Elapsed: ',
 	            this.state.secondsElapsed,
 	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('img', { src: '../images/sampleOfTimer.png',
+	            _react2.default.createElement('img', { src: imgSrc,
 	                style: imgStyle
 	            }),
 	            ' '
@@ -38980,6 +38982,8 @@
 	    },
 	    render: function render() {
 
+	        var imgSrc = location.origin + location.pathname + "/images/sampleOfTodoList.png";
+
 	        var imgStyle = {
 	            margin: "10px 0 0 0"
 	        };
@@ -39005,7 +39009,7 @@
 	                    ' '
 	                )
 	            ),
-	            _react2.default.createElement('img', { src: '../images/sampleOfTodoList.png', style: imgStyle }),
+	            _react2.default.createElement('img', { src: imgSrc, style: imgStyle }),
 	            ' '
 	        );
 	    }
@@ -39059,6 +39063,8 @@
 	    },
 	    render: function render() {
 
+	        var imgSrc = location.origin + location.pathname + "/images/sampleOfMarkdownEditor.png";
+
 	        var imgStyle = {
 	            margin: "10px 0 0 0"
 	        };
@@ -39088,7 +39094,7 @@
 	            }),
 	            ' ',
 	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('img', { src: '../images/sampleOfMarkdownEditor.png',
+	            _react2.default.createElement('img', { src: imgSrc,
 	                style: imgStyle
 	            }),
 	            ' '

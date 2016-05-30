@@ -52,6 +52,8 @@ var TodoApp = React.createClass({
     },
     render: function() {
 
+            var imgSrc = location.origin + location.pathname + "/images/sampleOfTodoList.png";
+
             var imgStyle = {
                 margin: "10px 0 0 0"
             };
@@ -64,7 +66,7 @@ var TodoApp = React.createClass({
                     <input onChange= {this.onChange} value = {this.state.text}/>
                     <button> {'Add #' + (this.state.items.length + 1)} </button>
                 </form >
-                <img src = {'../images/sampleOfTodoList.png'} style = {imgStyle}/> < /div >
+                <img src = {imgSrc} style = {imgStyle}/> < /div >
             );
         }
 });
