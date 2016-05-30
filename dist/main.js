@@ -38816,6 +38816,8 @@
 
 	    render: function render() {
 
+	        var imgSrc = location.origin + location.pathname + "/images/sampleOfHelloMessages.png";
+
 	        var imgStyle = {
 	            margin: "10px 0 0 0"
 	        };
@@ -38827,7 +38829,7 @@
 	            this.props.name,
 	            ' ',
 	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('img', { src: '../images/sampleOfHelloMessages.png',
+	            _react2.default.createElement('img', { src: imgSrc,
 	                style: imgStyle
 	            })
 	        );
