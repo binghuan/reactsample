@@ -27,7 +27,7 @@ var Timer = React.createClass({
 
         return ( < div > Seconds Elapsed: {
             this.state.secondsElapsed
-        }< img src = "../images/sampleOfTimer.png"
+        }<br/>< img src = "../images/sampleOfTimer.png"
         style = {
             imgStyle
         }

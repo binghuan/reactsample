@@ -64,7 +64,7 @@ var TodoApp = React.createClass({
                     <input onChange= {this.onChange} value = {this.state.text}/>
                     <button> {'Add #' + (this.state.items.length + 1)} </button>
                 </form >
-                <img src = "../images/sampleOfTodoList.png" style = {imgStyle}/> < /div >
+                <img src = {'../images/sampleOfTodoList.png'} style = {imgStyle}/> < /div >
             );
         }
 });

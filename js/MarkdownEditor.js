@@ -39,7 +39,7 @@ var MarkdownEditor = React.createClass({
             dangerouslySetInnerHTML = {
                 this.rawMarkup()
             }
-            /> < img src = "../images/sampleOfMarkdownEditor.png"
+            /> <br/>< img src = "../images/sampleOfMarkdownEditor.png"
             style = {
                 imgStyle
             }

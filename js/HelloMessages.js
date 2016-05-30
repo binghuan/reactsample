@@ -11,7 +11,7 @@ var HelloMessages = React.createClass({
 
         return <div > Hello {
             this.props.name
-        } < img src = "../images/sampleOfHelloMessages.png"
+        } <br/>< img src = {'../images/sampleOfHelloMessages.png'}
         style = {imgStyle}
         /></div > ;
     }

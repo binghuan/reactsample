@@ -1114,7 +1114,7 @@
 	var warning = emptyFunction;
 
 	if (process.env.NODE_ENV !== 'production') {
-	  warning = function (condition, format) {
+	  warning = function warning(condition, format) {
 	    for (var _len = arguments.length, args = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
 	      args[_key - 2] = arguments[_key];
 	    }
@@ -1162,6 +1162,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
+	 * 
 	 */
 
 	function makeEmptyFunction(arg) {
@@ -1175,7 +1176,7 @@
 	 * primarily useful idiomatically for overridable function endpoints which
 	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
 	 */
-	function emptyFunction() {}
+	var emptyFunction = function emptyFunction() {};
 
 	emptyFunction.thatReturns = makeEmptyFunction;
 	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
@@ -2064,11 +2065,11 @@
 	 * because of Facebook's testing infrastructure.
 	 */
 	if (performance.now) {
-	  performanceNow = function () {
+	  performanceNow = function performanceNow() {
 	    return performance.now();
 	  };
 	} else {
-	  performanceNow = function () {
+	  performanceNow = function performanceNow() {
 	    return Date.now();
 	  };
 	}
@@ -3156,7 +3157,7 @@
 	 * @param {object} obj
 	 * @return {object}
 	 */
-	var keyMirror = function (obj) {
+	var keyMirror = function keyMirror(obj) {
 	  var ret = {};
 	  var key;
 	  !(obj instanceof Object && !Array.isArray(obj)) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'keyMirror(...): Argument must be an object.') : invariant(false) : void 0;
@@ -3228,7 +3229,7 @@
 	 * 'xa12' in that case. Resolve keys you want to use once at startup time, then
 	 * reuse those resolutions.
 	 */
-	var keyOf = function (oneKeyObj) {
+	var keyOf = function keyOf(oneKeyObj) {
 	  var key;
 	  for (key in oneKeyObj) {
 	    if (!oneKeyObj.hasOwnProperty(key)) {
@@ -11718,6 +11719,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
+	 * 
 	 * @typechecks static-only
 	 */
 
@@ -11725,9 +11727,6 @@
 
 	/**
 	 * Memoizes the return value of a function that accepts one string argument.
-	 *
-	 * @param {function} callback
-	 * @return {function}
 	 */
 
 	function memoizeStringOnly(callback) {
@@ -16972,18 +16971,18 @@
 	   * @param {function} callback Callback function.
 	   * @return {object} Object with a `remove` method.
 	   */
-	  listen: function (target, eventType, callback) {
+	  listen: function listen(target, eventType, callback) {
 	    if (target.addEventListener) {
 	      target.addEventListener(eventType, callback, false);
 	      return {
-	        remove: function () {
+	        remove: function remove() {
 	          target.removeEventListener(eventType, callback, false);
 	        }
 	      };
 	    } else if (target.attachEvent) {
 	      target.attachEvent('on' + eventType, callback);
 	      return {
-	        remove: function () {
+	        remove: function remove() {
 	          target.detachEvent('on' + eventType, callback);
 	        }
 	      };
@@ -16998,11 +16997,11 @@
 	   * @param {function} callback Callback function.
 	   * @return {object} Object with a `remove` method.
 	   */
-	  capture: function (target, eventType, callback) {
+	  capture: function capture(target, eventType, callback) {
 	    if (target.addEventListener) {
 	      target.addEventListener(eventType, callback, true);
 	      return {
-	        remove: function () {
+	        remove: function remove() {
 	          target.removeEventListener(eventType, callback, true);
 	        }
 	      };
@@ -17016,7 +17015,7 @@
 	    }
 	  },
 
-	  registerDefault: function () {}
+	  registerDefault: function registerDefault() {}
 	};
 
 	module.exports = EventListener;
@@ -17712,7 +17711,7 @@
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * @typechecks
+	 * 
 	 */
 
 	var isTextNode = __webpack_require__(144);
@@ -17721,10 +17720,6 @@
 
 	/**
 	 * Checks if a given DOM node contains or is another DOM node.
-	 *
-	 * @param {?DOMNode} outerNode Outer DOM node.
-	 * @param {?DOMNode} innerNode Inner DOM node.
-	 * @return {boolean} True if `outerNode` contains or is `innerNode`.
 	 */
 	function containsNode(outerNode, innerNode) {
 	  if (!outerNode || !innerNode) {
@@ -17735,7 +17730,7 @@
 	    return false;
 	  } else if (isTextNode(innerNode)) {
 	    return containsNode(outerNode, innerNode.parentNode);
-	  } else if (outerNode.contains) {
+	  } else if ('contains' in outerNode) {
 	    return outerNode.contains(innerNode);
 	  } else if (outerNode.compareDocumentPosition) {
 	    return !!(outerNode.compareDocumentPosition(innerNode) & 16);
@@ -25667,7 +25662,11 @@
 	  var useRefresh = !isSupported || forceRefresh;
 
 	  function getCurrentLocation(historyState) {
-	    historyState = historyState || window.history.state || {};
+	    try {
+	      historyState = historyState || window.history.state || {};
+	    } catch (e) {
+	      historyState = {};
+	    }
 
 	    var path = _DOMUtils.getWindowPath();
 	    var _historyState = historyState;
@@ -26887,7 +26886,8 @@
 	  'insert': 45,
 	  'delete': 46,
 	  'command': 91,
-	  'right click': 93,
+	  'left command': 91,
+	  'right command': 93,
 	  'numpad *': 106,
 	  'numpad +': 107,
 	  'numpad -': 109,
@@ -26928,7 +26928,7 @@
 	  'escape': 27,
 	  'spc': 32,
 	  'pgup': 33,
-	  'pgdn': 33,
+	  'pgdn': 34,
 	  'ins': 45,
 	  'del': 46,
 	  'cmd': 91
@@ -38826,6 +38826,7 @@
 	            ' Hello ',
 	            this.props.name,
 	            ' ',
+	            _react2.default.createElement('br', null),
 	            _react2.default.createElement('img', { src: '../images/sampleOfHelloMessages.png',
 	                style: imgStyle
 	            })
@@ -38885,6 +38886,7 @@
 	            null,
 	            ' Seconds Elapsed: ',
 	            this.state.secondsElapsed,
+	            _react2.default.createElement('br', null),
 	            _react2.default.createElement('img', { src: '../images/sampleOfTimer.png',
 	                style: imgStyle
 	            }),
@@ -39083,6 +39085,7 @@
 	                dangerouslySetInnerHTML: this.rawMarkup()
 	            }),
 	            ' ',
+	            _react2.default.createElement('br', null),
 	            _react2.default.createElement('img', { src: '../images/sampleOfMarkdownEditor.png',
 	                style: imgStyle
 	            }),
